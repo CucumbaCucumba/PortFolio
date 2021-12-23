@@ -1,4 +1,5 @@
-<p style="color: white;">Mot clé</p><input type="text" class="form-control" style="width: 600px;" [(ngModel)]=y>{{y}}
+<div class="container" style="background-color: silver; border: black; border-radius: 1%;" >
+<p style="text-decoration: none;" routerLink="/projects"><p style=" font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bolder;font-size: 20pt;">Projects</p>
 <div style="height: 25px;"></div>
 <table class="table"  *ngIf="products;else fat7i" style="width: 700px; background-color: white;
  border-radius: 25px;">
@@ -11,42 +12,130 @@
             id
         </th>
         <th>
-            nom
+            name
         </th>
         <th>
-            price
+            tech
         </th>
         <th>
-            quanity
+            description
+        </th>
+        <th>
+            image path
         </th>
     </tr>
     <tr *ngFor="let a of productsF">
         <td>
-            <img *ngIf="nomButt=='masquer'" src="http://localhost:8282/produits/image/+{{a.id}}" width="50" height="50">
+            <img *ngIf="nomButt=='masquer'" src="http://localhost:8080/api/Project/img/+{{a.id}}" width="50" height="50">
         </td>
         <td>{{a.id}}</td>
-        <td [ngStyle]="{'color':getColor(a.quantite)}"><a routerLink="/products/{{a.id}}">{{a.nom}}</a></td>
-        <td>{{a.prix}}</td>
-        <td>{{a.quantite}}</td>
-        <td><button (click)=deleteById(a.id) class="btn btn-primary active" style="border-radius: 25px;">delete</button></td>
-        <td><a routerLink="/products/alter/{{a.id}}"><button class="btn btn-primary active" style="border-radius: 25px;">alter</button></a></td>
+        <td>{{a.name}}</td>
+        <td>{{a.technology}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.imgagePath}}</td>
+        <td><button (click)=deleteprojById(a.id) class="btn btn-primary active" style="border-radius: 25px;">delete</button></td>
+        <td><a routerLink="/admin/alterProject/{{a.id}}"><button class="btn btn-primary active" style="border-radius: 25px;">alter</button></a></td>
     </tr>
 </table>
 <form [formGroup]="Prod">
     <div class="form-group">
-<label for="name" style="color: white;">Name:</label>
+<label for="name" >Name:</label>
 <input type="text" id="name" class="form-control" formControlName="name"><br>
     </div>
     <div class="form-group">
-<label for="price" style="color: white;">Price:</label>
-<input type="text" id="price" class="form-control" formControlName="price"><br>
+<label for="price" >Technology:</label>
+<input type="text" id="tech" class="form-control" formControlName="tech"><br>
 </div>
 <div class="form-group">
-<label for="quantity" style="color: white;">Quantity:</label>
-<input type="text" id="quanity" class="form-control" formControlName="quantity"><br>
+<label for="price" >image Path:</label>
+<input type="text" id="imgpath" class="form-control" formControlName="imgpath"><br>
+</div>
+<div class="form-group" style="padding-bottom: 1%;">
+<label for="quantity" >Description:</label>
+<input type="text" id="desc" class="form-control" formControlName="desc"><br>
 <button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmit()>Submit</button>
 </div>
+
 </form>
 
 <ng-template #fat7i><h2 style="color: red;">tableau vide</h2> </ng-template>
 
+</div>
+<div style="height: 30px;">
+
+</div>
+<div class="container" style="background-color: silver; border: black; border-radius: 1%; " >
+    <p style="text-decoration: none;" routerLink="/projects"><p style=" font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bolder;font-size: 20pt;">Languages</p>
+    <div style="height: 25px;"></div>
+    <table class="table"  *ngIf="products;else fat7i" style="width: 700px; background-color: white;
+     border-radius: 25px;">
+        <tr>
+
+            <th>
+                id
+            </th>
+            <th>
+                name
+            </th>
+        </tr>
+        <tr *ngFor="let a of LangF">
+            <td>
+            </td>
+            <td>{{a.id}}</td>
+            <td>{{a.nom}}</td>
+           
+            <td><button (click)=deletelangById(a.id) class="btn btn-primary active" style="border-radius: 25px;">delete</button></td>
+            <td><a routerLink="/admin/alterLang/{{a.id}}"><button class="btn btn-primary active" style="border-radius: 25px;">alter</button></a></td>
+        </tr>
+    </table>
+    <form [formGroup]="Prod2">
+        <div class="form-group">
+    <label for="name" >Name:</label>
+    <input type="text" id="name" class="form-control" formControlName="name"><br>
+    <button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmitLang()>Submit</button>
+    </div>
+    
+    </form>
+    
+    <ng-template #fat7i><h2 style="color: red;">tableau vide</h2> </ng-template>
+    
+    </div>
+    <div style="height: 30px;">
+
+    </div>
+    <div class="container" style="background-color: silver; border: black; border-radius: 1%; " >
+        <p style="text-decoration: none;" routerLink="/projects"><p style=" font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight: bolder;font-size: 20pt;">Software</p>
+        <div style="height: 25px;"></div>
+        <table class="table"  *ngIf="products;else fat7i" style="width: 700px; background-color: white;
+         border-radius: 25px;">
+            <tr>
+    
+                <th>
+                    id
+                </th>
+                <th>
+                    name
+                </th>
+            </tr>
+            <tr *ngFor="let a of SoftF ">
+                <td>
+                </td>
+                <td>{{a.id}}</td>
+                <td>{{a.nom}}</td>
+               
+                <td><button (click)=deletesoftById(a.id) class="btn btn-primary active" style="border-radius: 25px;">delete</button></td>
+                <td><a routerLink="/admin/alterSoft/{{a.id}}"><button class="btn btn-primary active" style="border-radius: 25px;">alter</button></a></td>
+            </tr>
+        </table>
+        <form [formGroup]="Prod3">
+            <div class="form-group">
+        <label for="name" >Name:</label>
+        <input type="text" id="name" class="form-control" formControlName="name"><br>
+        <button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmitSoft()>Submit</button>
+        </div>
+        
+        </form>
+        
+        <ng-template #fat7i><h2 style="color: red;">tableau vide</h2> </ng-template>
+        
+        </div>

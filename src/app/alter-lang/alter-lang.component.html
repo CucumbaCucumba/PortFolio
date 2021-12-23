@@ -1,0 +1,13 @@
+
+<form [formGroup]="Prod">
+    <div class="form-group">
+<label for="nom" style="color: white;">Name:</label>
+<input  type="text" id="nom" class="form-control" formControlName="nom" 
+[(ngModel)]=p.nom 
+name="nom"
+ required><br>
+<button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmit()>Submit</button>
+</div>
+</form>
+
+
