@@ -1,0 +1,23 @@
+{
+    "competence": [
+        {
+            "nom" : "JAVA"
+        },
+        {
+            "nom" : "C#"
+        },
+        {
+            "nom" : "C++"
+        },
+        {
+            "nom" : "C"
+        },
+        {
+            "nom" : "PYTHON"
+        },
+        {
+            "nom" : "ACTION SCRIPT"
+        }
+      ]
+    
+}

@@ -1,0 +1,52 @@
+<p style="color: white;">Mot clé</p><input type="text" class="form-control" style="width: 600px;" [(ngModel)]=y>{{y}}
+<div style="height: 25px;"></div>
+<table class="table"  *ngIf="products;else fat7i" style="width: 700px; background-color: white;
+ border-radius: 25px;">
+    <tr>
+        <th>
+            
+            <button (click)=toggleIMG() class="btn btn-primary active" style="border-radius: 25px;">{{nomButt}}</button>
+        </th>
+        <th>
+            id
+        </th>
+        <th>
+            nom
+        </th>
+        <th>
+            price
+        </th>
+        <th>
+            quanity
+        </th>
+    </tr>
+    <tr *ngFor="let a of productsF">
+        <td>
+            <img *ngIf="nomButt=='masquer'" src="http://localhost:8282/produits/image/+{{a.id}}" width="50" height="50">
+        </td>
+        <td>{{a.id}}</td>
+        <td [ngStyle]="{'color':getColor(a.quantite)}"><a routerLink="/products/{{a.id}}">{{a.nom}}</a></td>
+        <td>{{a.prix}}</td>
+        <td>{{a.quantite}}</td>
+        <td><button (click)=deleteById(a.id) class="btn btn-primary active" style="border-radius: 25px;">delete</button></td>
+        <td><a routerLink="/products/alter/{{a.id}}"><button class="btn btn-primary active" style="border-radius: 25px;">alter</button></a></td>
+    </tr>
+</table>
+<form [formGroup]="Prod">
+    <div class="form-group">
+<label for="name" style="color: white;">Name:</label>
+<input type="text" id="name" class="form-control" formControlName="name"><br>
+    </div>
+    <div class="form-group">
+<label for="price" style="color: white;">Price:</label>
+<input type="text" id="price" class="form-control" formControlName="price"><br>
+</div>
+<div class="form-group">
+<label for="quantity" style="color: white;">Quantity:</label>
+<input type="text" id="quanity" class="form-control" formControlName="quantity"><br>
+<button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmit()>Submit</button>
+</div>
+</form>
+
+<ng-template #fat7i><h2 style="color: red;">tableau vide</h2> </ng-template>
+
