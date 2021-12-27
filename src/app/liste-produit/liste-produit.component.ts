@@ -15,9 +15,10 @@ import { WebService } from '../service-web.service';
 export class ListeProduitComponent implements OnInit {
 
   p = new ProjectClasse;
+  selectedLang :string
+  selectedSoft :string
   Prod = new FormGroup({
   name : new FormControl(''),
-  tech : new FormControl(''),
   desc : new FormControl(''),
   imgpath : new FormControl(''),
   })
@@ -82,13 +83,16 @@ export class ListeProduitComponent implements OnInit {
 
 
   onSubmitProj(){
+    console.log(this.selectedLang)
+    console.log(this.LangF[parseInt(this.selectedLang)])
    this.p.name = this.Prod.get("name").value
-   this.p.technology = this.Prod.get("tech").value
    this.p.description = this.Prod.get("desc").value
    this.p.imgagePath = this.Prod.get("imgpath").value 
-    this.service.addProject(this.p).subscribe(data=>{
-      this.service.getProjects().subscribe(data=>{ this.products=data
-      this.productsF=this.products});}); 
+   this.p.lang =[this.LangF[parseInt(this.selectedLang)]]
+   this.p.soft =[this.SoftF[parseInt(this.selectedSoft)]]
+      this.service.addProject(this.p).subscribe(data=>{
+        this.service.getProjects().subscribe(data=>{ this.products=data
+        this.productsF=this.products});});
    }
 
    onSubmitLang(){

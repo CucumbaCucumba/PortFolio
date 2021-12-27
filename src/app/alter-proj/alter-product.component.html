@@ -1,31 +1,46 @@
-
+<div class="container" style="padding-top: 2%;">
 <form [formGroup]="Prod">
     <div class="form-group">
-<label for="name" style="color: white;">Name:</label>
+<label for="name">Name:</label>
 <input  type="text" id="name" class="form-control" formControlName="name" 
 [(ngModel)]=p.name 
 name="name"
  required><br>
     </div>
-    <div class="form-group">
-<label for="technology" style="color: white;">Technology:</label>
-<input  [(ngModel)]=p.technology name="technology" required
- type="text" id="technology" class="form-control" formControlName="technology"><br>
-</div>
+
 <div class="form-group">
-<label for="name" style="color: white;">Image path:</label>
+<label for="name">Image path:</label>
 <input  type="text" id="imgPath" class="form-control" formControlName="imgPath" 
 [(ngModel)]=p.imgagePath 
 name="imgPath"
  required><br>
     </div>
 <div class="form-group">
-<label for="description" style="color: white;">Description:</label>
+<label for="description" >Description:</label>
 <input 
 [(ngModel)]=p.description name="description" required
  type="text" id="description" class="form-control" formControlName="description"><br>
-<button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmit()>Submit</button>
 </div>
 </form>
+<div  style="padding-bottom: 1%;">
+    <label for="Languages" >Languages:</label>
+    <select [(ngModel)]="selectedLang" name="Languages">
+        <option value="langs[selectednumbL].index" selected></option>
+        <option *ngFor="let l of Langs;let index = index"[value]="index">
+            {{l.nom}}
+        </option>
+    </select>
+</div>
+<div  style="padding-bottom: 1%;">
+    <label for="software" >Software:</label>
+    <select  [(ngModel)]="selectedSoft" name="software">
+        <option value="Softs[selectednumbS].index"></option>
+        <option *ngFor="let l of Softs;let index = index"[value]="index">
+        {{l.nom}}
+        </option>
+    </select>
+</div>
+<button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmit()>Submit</button>
 
+</div>
 

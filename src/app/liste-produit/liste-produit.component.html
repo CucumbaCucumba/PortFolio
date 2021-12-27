@@ -15,7 +15,10 @@
             name
         </th>
         <th>
-            tech
+            languages
+        </th>
+        <th>
+            Softwares
         </th>
         <th>
             description
@@ -30,7 +33,8 @@
         </td>
         <td>{{a.id}}</td>
         <td>{{a.name}}</td>
-        <td>{{a.technology}}</td>
+        <td><p *ngFor="let b of a.lang">{{b.nom}}</p></td>
+        <td><p *ngFor="let b of a.soft">{{b.nom}}</p></td>
         <td>{{a.description}}</td>
         <td>{{a.imgagePath}}</td>
         <td><button (click)=deleteprojById(a.id) class="btn btn-primary active" style="border-radius: 25px;">delete</button></td>
@@ -42,10 +46,7 @@
 <label for="name" >Name:</label>
 <input type="text" id="name" class="form-control" formControlName="name"><br>
     </div>
-    <div class="form-group">
-<label for="price" >Technology:</label>
-<input type="text" id="tech" class="form-control" formControlName="tech"><br>
-</div>
+
 <div class="form-group">
 <label for="price" >image Path:</label>
 <input type="text" id="imgpath" class="form-control" formControlName="imgpath"><br>
@@ -53,10 +54,27 @@
 <div class="form-group" style="padding-bottom: 1%;">
 <label for="quantity" >Description:</label>
 <input type="text" id="desc" class="form-control" formControlName="desc"><br>
-<button class="btn btn-primary active" style="border-radius: 25px;" type="submit" (click)=onSubmit()>Submit</button>
 </div>
-
 </form>
+<div  style="padding-bottom: 1%;">
+    <label for="Languages" >Languages:</label>
+    <select [(ngModel)]="selectedLang" name="Languages">
+        <option value="" selected></option>
+        <option *ngFor="let l of LangF;let index = index"[value]="index">
+            {{l.nom}}
+        </option>
+    </select>
+</div>
+<div  style="padding-bottom: 1%;">
+    <label for="software" >Software:</label>
+    <select  [(ngModel)]="selectedSoft" name="software" required>
+        <option *ngFor="let l of SoftF;let index = index"[value]="index">
+        {{l.nom}}
+        </option>
+    </select>
+</div>
+<button class="btn btn-primary active" style="margin-bottom: 1%;;border-radius: 25px;" type="submit" (click)=onSubmitProj()>Submit</button>
+
 
 <ng-template #fat7i><h2 style="color: red;">tableau vide</h2> </ng-template>
 
